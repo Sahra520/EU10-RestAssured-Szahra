@@ -17,6 +17,7 @@ public class SimpleGetRequest {
         System.out.println(response.statusCode());
         /*200-->passed*/
 
+
         //print status bode
         response.prettyPrint();
         /*
