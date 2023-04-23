@@ -2,11 +2,12 @@ package com.cydeo.Day1;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.apache.http.protocol.ResponseServer;
 import org.junit.jupiter.api.Test;
 
 public class SimpleGetRequest {
 
-    String url = "http://3.92.209.95:8000/api/spartans";
+    String url = "http://54.226.109.52:8000/api/spartans";
 
     @Test
     public void test1(){
@@ -42,6 +43,14 @@ public class SimpleGetRequest {
     }
 
 
+
+
+    @Test
+    public void test2(){
+        Response response = RestAssured.get(url);
+
+        System.out.println(response.prettyPrint());
+    }
 
 
 
