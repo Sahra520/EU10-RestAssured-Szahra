@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HrGetRequest {
 
 
-    //BeforeAll is a annotation equals to @BeforeClass in TestNG, we use with static method name
+    //BeforeAll is annotation equals to @BeforeClass in TestNG, we use with static method name
     @BeforeAll
     public static void init(){
         //save baseUrl inside this variable, so we don't need to type each http method
