@@ -22,6 +22,10 @@ public class JsonToJavaTest extends SpartanTestBase {
                 .when().get("/api/spartans/{id}")
                 .then().statusCode(200).extract().response();
 
+
+//in order to as() method we have to add some dependencies in pom.xml file
+
+
         //get the json and convert it to the Map
         Map<String,Object> jsonMap = response.as(Map.class);
 
