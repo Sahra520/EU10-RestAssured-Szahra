@@ -1,33 +1,19 @@
 package com.cydeo.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter//needs lombok dependency
+@ToString
 public class Link {
 
     private String rel;
     private String href;
     //variables must be match with HR ORDS data's contents
 
-    public String getRel() {
-        return rel;
-    }
-
-    public void setRel(String rel) {
-        this.rel = rel;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
-    }
+    //to get ready code: write to chrome: jsontopojo, it will navigate jsonshcema2pojo.org
 
 
-    @Override
-    public String toString() {
-        return "Link{" +
-                "rel='" + rel + '\'' +
-                ", href='" + href + '\'' +
-                '}';
-    }
 }
