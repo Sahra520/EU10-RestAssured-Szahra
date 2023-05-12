@@ -1,45 +1,28 @@
 package com.cydeo.pojo;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.util.List;
+@Getter
+@Setter
+@ToString
 public class Region {
 
-    private int region_id;
-    private String region_name;
+    @JsonProperty("region_id")//by using Jackson annotation we can convert json to special variable name
+    private int regionId;
+    //if your jsonKey and variable name is not matching, you can map it with @JsonProperty("region_id")
+    //so we use @JsonProperty annotation that comes from jackson, we provide the jsonKey that we want to map,
+    //and we put on top of the field that we create connection
+    //not matching each variable we have to write @JsonProperty separately
+
+    @JsonProperty("region_name")
+    private String regName;
+
+    @JsonProperty("links")
     private List<Link> links;
-
-
-    public int getRegion_id() {
-        return region_id;
-    }
-
-    public void setRegion_id(int region_id) {
-        this.region_id = region_id;
-    }
-
-    public String getRegion_name() {
-        return region_name;
-    }
-
-    public void setRegion_name(String region_name) {
-        this.region_name = region_name;
-    }
-
-    public List<Link> getLinks() {
-        return links;
-    }
-
-    public void setLinks(List<Link> links) {
-        this.links = links;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Region{" +
-                "region_id=" + region_id +
-                ", region_name='" + region_name + '\'' +
-                ", links=" + links +
-                '}';
-    }
+//to get ready code: write to chrome: jsontopojo, it will navigate jsonshcema2pojo.org
+//deserialize-break chain
 }
