@@ -134,4 +134,59 @@ and same data what is posted
         response.prettyPrint();
 
     }
+
+
+    @DisplayName("POST with Map to Spartan Class")//Spartan Class is from pojo package
+    @Test
+    public void postMethod4(){
+
+        //This example we implement serialization with certain object sending as a request body
+        //also implemented deserialization getting the id,sending GET request nad saving that body as a response
+
+
+        //create one object from our pojo, send it as a JSON
+        Spartan spartan = new Spartan();
+        spartan.setName("Yusuf");
+        spartan.setGender("Male");
+        spartan.setPhone(8877445596L);
+
+        System.out.println("spartan = " + spartan);
+
+        String expectedResponseMessage = "A Spartan is Born!";
+
+        int idFromPost = given().accept(ContentType.JSON).and()
+                //what we are asking from api which is JSON response
+                .contentType(ContentType.JSON)//what we are sending to api, which is JSON also
+                .body(spartan).log().all()
+                .when()
+                .post("/api/spartans")
+                .then().statusCode(201)
+                .contentType("application/json")
+                .body("success",is(expectedResponseMessage))
+                .extract().jsonPath().getInt("data.id");
+
+
+        //send a GET request to id
+        Spartan spartanPosted = given().accept(ContentType.JSON)
+                .and().pathParam("id",idFromPost)
+                .when().get("/api/spartans/{id}")
+                .then().statusCode(200)
+                .extract().as(Spartan.class);
+
+        System.out.println("spartanPosted = " + spartanPosted);
+
+        assertThat(spartanPosted.getName(),is(spartan.getName()));
+        assertThat(spartanPosted.getGender(),is(spartan.getGender()));
+        assertThat(spartanPosted.getPhone(),is(spartan.getPhone()));
+        assertThat(spartanPosted.getId(),is(idFromPost));
+
+//        assertThat(response.path("success"),is(expectedResponseMessage));
+//
+//        assertThat(response.path("data.name"), is("Yusuf"));
+//        assertThat(response.path("data.gender"),is("Male"));
+//        assertThat(response.path("data.phone"),is(8877445596L));
+
+
+
+    }
 }
